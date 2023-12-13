@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie-buy</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   <link rel="stylesheet" href="css/designfoodbuy.css">
+<body>
+
+     <header><div class="side">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div></div><input  class="search-food" id="search-food"  type="search" placeholder="search food..."
+      onkeyup="searchsomething(this)">
+      <img src="picture/text/RandomFood2.PNG" alt="Random Food Seller" width="300px" height="30px" >
+     <div class="cart"><div onclick="opencart()" class="fas fa-shopping-cart"></div> </div>
+     <nav>
+      <a  href="index.html" >Home  </a>
+  <a href="foodbuy.html">Food Buy </a>
+      <a href="guide.html">Guide</a>
+      <a  href="contact.html">Contact  </a>
+      <a href="about.html">About  </a>
+   </nav>
+   </header>
+     <article>
+   <aside class="left-sidebar">
+    <div class="sidebar">
+        <div  class="sidebar-menu">
+            <div class="close">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div></div>
+         </div>
+    </div>
+       <div class="sidebar-menu">
+        <span class="fas fa-home">
+           <a href="index.html">Home </a>
+          </span>
+       </div>
+       <div class="sidebar-menu">
+           <span class="fas fa-shopping-cart">
+           <a href="foodbuy.html">Food Buy</a>
+          </span>
+       </div>
+       <div class="sidebar-menu">
+          <span class="fas fa-book">
+          <a href="guide.html">Guide</a>
+       </span>
+      </div>
+       <div class="sidebar-menu">
+           <span class="fas fa-user-friends">
+           <a href="contact.html">Contact</a>
+          </span>
+       </div>
+       <div class="sidebar-menu">
+           <span class="fas fa-database">
+           <a href="about.html">About</a>
+          </span>
+       </div>
+       </div>
+     </aside>
+     <div class="dashboard">
+      <div class="title">
+      <h3><img src="picture/text/RandomFood3.PNG" alt="Recommend food for you"></h3>
+      </div>
+      <div class="butt">
+      <button id="b-d" onclick="searchfood('AllFood')" >All Food</button>
+      <button id="b-a" onclick="searchfood('Promotion')" >Promotion</button>
+      <button id="b-b" onclick="searchfood('Nearme')">Near me</button>
+      <button id="b-c" onclick="searchfood('BestSeller')">Best Seller</button>
+</div>
+      <div id="foodlist" class="dashboard-content">
+          
+      
+      </div>
+  </div>
+  <div id="modaldetailshop" class="modal" style="display: none;">
+    <div onclick="closemodal()" class="modal-bg"></div>
+    <div class="modal-page">
+      <h2>Detail</h2>
+      <div class="modal-content">
+      <img  id="modal-img" class="modal-img" src="picture/food1.jpg" alt="">
+      <div class="modal-detail">
+        <p id = "modal-name" style="font-size: 16px; font-weight: 800;" >  name</p>
+        <p id="modal-price" style="font-size: 14px; font-weight: 600;">50 บาท</p>
+        <br>
+        <p id="modal-cal" style="font-size: 14px;" >ปริมาณแคลอรี่ในอาหาร 560 กิโลแคลอรี่ต่อจานหรือชาม<p>
+        <br>
+        <div class="btn-control">
+          <button onclick="closemodal()" class="btn-close">Close</button>
+          <button onclick="addcart()" class="btn-addcart">Add To Cart</button>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div id="modal-cart" class="modal" style="display: none;">
+      <div class="modal-bg"></div>
+      <div class="modal-page">
+        <h2>My Cart</h2>
+        <div id="mycart" class="cartlist">
+          
+        </div>
+        <div class="totalcart">
+          <p>ราคารวม :</p><p id="totalpriceproduct" style="font-size: 14px;">0 บาท</p></div>
+          <div class="totalcart">
+          <p>ค่าจัดส่ง :</p><p id="delivery" style="font-size: 14px;">0 บาท</p></div>
+          <div class="totalcart">
+          <p>ชำระเงิน :</p><p id="total" style="font-size: 14px;">0 บาท</p></div>
+        <br>
+        <span>ข้อมูลการจัดส่ง</span><span class="place"><button type="submit" class="cartplace" onclick=" cartplaceopen()">เพิ่ม</button></span>
+        <br>
+        <br>
+        <br>
+        <div class="btn-control">       
+            <button onclick="closemodal()" class="btn-close">Cancel</button>
+            <button onclick="successcart()" class="btn-addcart">Buy</button>
+        </div>
+      </div>
+      </div>
+      <div id="modal-place" class="modal" style="display: none;">
+        <div class="modal-bg"></div>
+        <div class="modal-page">
+          <h2>Delivery details</h2>
+          <label for="firstname">ชื่อจริง</label>
+          <input type="text" name="fname" placeholder="ป้อนชื่อจริงของคุณ" required> 
+          <label for="surname">นามสกุล</label>
+          <input type="text" name="lname" placeholder="ป้อนนามสกุลของคุณ">
+          <br>
+          <br>
+          <label for="place">ที่อยู๋สำหรับจัดส่ง</label>
+          <br>
+          <textarea style="width: 100%;" name="" id="" cols="30" rows="10" placeholder="ป้อนที่อยู่สำหรับจัดส่ง"required></textarea>
+          <br>
+          <br>
+          <label for="email">อีเมล:</label>
+          <input type="email" name="email" placeholder="ป้อนอีเมลของคุณ" required>
+              <label for="tel">เบอร์โทรศัพท์</label>
+              <input type="tel" name="tel" placeholder="ป้อนเบอร์ของคุณ">
+              <br>
+          <br>
+          <div class="btn-control">       
+              <button onclick="closemodalplace()" class="btn-close">Cancel</button>
+              <button class="btn-submit" type="submit" onclick="place()">Record</button>
+          </div>
+        </div>
+
+    </article>  
+</body>
+<footer>
+   <script src="https://kit.fontawesome.com/a1f284fa1a.js"></script>
+   <div class="row">
+      <div class="col">
+         <img src="picture/footer/picline.png" alt="picline" class="picline"></div>
+      <div class="col">
+         <h3>About Us<div class="underline"><span></span></div></h3>
+         <p>นายธีรพันธ์ กนกเนตรวีระกุล</p>
+         <p class="email-id">teeraphan.kanoknetveerakul@g.swu.ac.th</p>
+         <p>นายภูวเดช นาแหยม</p>
+         <p class="email-id"> phuwdech.nayam@g.swu.ac.th</p>
+         <h4>Tel.061-792-0809</h4>
+      </div>
+      <div class="col">
+         <center><h3>Links<div class="underline"><span></span></h3></center>
+         <ul>
+            <li><a href="index.html"><img src="picture/footer/home.PNG" alt="home"></a></li>
+            <li><a href="foodbuy.html"><img src="picture/footer/food_buy.PNG" alt="food_buy"></a></li>
+            <li><a href="guide.html"><img src="picture/footer/guide.PNG" alt="guide"></a></li>
+            <li><a href="contact.html"><img src="picture/footer/contact.PNG" alt="contact"></a></li>
+            <li><a href="about.html"><img src="picture/footer/about.PNG" alt="about"></a></li>
+         </ul>
+      </div>
+      <div class="col">
+         <h3>Text us<div class="underline"><span></span></h3>
+         <form>
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" placeholder="Enter your email id" requred>
+            <button type="submit"><i class="fa-solid fa-arrow-right fa-beat-fade" style="color: #fff;"></i></button>
+         </form>
+         <div>
+            <center><img src="picture/footer/underline.PNG" alt="underline"<center></div>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <p class="copyright">Random Food Web</p>
+  </footer>
+<script src="js/jquery.js"></script>
+<script src="js/foodbuy.js"></script>
+</html>
